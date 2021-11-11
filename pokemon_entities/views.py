@@ -95,6 +95,15 @@ def show_pokemon(request, pokemon_id):
             'img_url': pokemon.previous_evolution.photo.url,
         }
 
+    next_evolution = pokemon.next_evolution.all().first()
+
+    if next_evolution:
+        pokemon_on_page['next_evolution'] = {
+            'title_ru': next_evolution.title,
+            'pokemon_id': next_evolution.id,
+            'img_url': next_evolution.photo.url,
+        }
+
 
     return render(request, 'pokemon.html', context={
         'map': folium_map._repr_html_(), 'pokemon': pokemon_on_page
