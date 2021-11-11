@@ -96,6 +96,7 @@ def show_pokemon(request, pokemon_id):
         }
 
     next_evolution = pokemon.next_evolution.all().first()
+    
 
     if next_evolution:
         pokemon_on_page['next_evolution'] = {
