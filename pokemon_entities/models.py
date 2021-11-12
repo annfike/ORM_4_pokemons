@@ -1,6 +1,6 @@
-from django.db import models  # noqa F401
+from django.db import models 
 
-# your models here
+
 class Pokemon (models.Model):
     title = models.CharField(max_length=200, verbose_name='имя')
     photo = models.ImageField(blank=True, upload_to='pokemons', verbose_name='картинка')
@@ -17,7 +17,8 @@ class Pokemon (models.Model):
         return f'{self.title}'
 
 class PokemonEntity (models.Model):
-    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE, verbose_name='покемон')
+    pokemon = models.ForeignKey(Pokemon, related_name='pokemon_entities',         
+                            on_delete=models.CASCADE, verbose_name='покемон')
     lat = models.FloatField(default=55, verbose_name='долгота')
     lon = models.FloatField(default=55, verbose_name='широта')
     appeared_at = models.DateTimeField(null=True, blank=True, verbose_name='появился в')
